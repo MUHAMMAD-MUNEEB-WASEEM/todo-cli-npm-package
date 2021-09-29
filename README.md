@@ -28,8 +28,25 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`muneeb add [FILE]`](#muneeb-add-file)
 * [`muneeb hello [FILE]`](#muneeb-hello-file)
 * [`muneeb help [COMMAND]`](#muneeb-help-command)
+
+## `muneeb add [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ muneeb add [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/add.ts](https://github.com/MUHAMMAD-MUNEEB-WASEEM/muneeb/blob/v0.0.0/src/commands/add.ts)_
 
 ## `muneeb hello [FILE]`
 
