@@ -1,25 +1,23 @@
 import {Command, flags} from '@oclif/command'
+import chalk = require('chalk');
+import todoApi from '../api/todoApi';
 
 export default class Remove extends Command {
-  static description = 'describe the command here'
+  static description = 'Remove todo'
 
-  static flags = {
-    help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
-  }
-
-  static args = [{name: 'file'}]
+  static args = [{name: 'index'}]
 
   async run() {
     const {args, flags} = this.parse(Remove)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from C:\\Github_1\\unicorn-api\\todo-cli-npm-package-project-2\\muneeb\\src\\commands\\remove.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    const index = args.index;
+    
+    if (index){
+      const todo = todoApi.get(index).todo;
+      todoApi.remove(index);
+      this.log(`${chalk.green('[Success]')} Removed todo: ${todo}`)
+    }else{
+      this.error(chalk.red('please specify the todo\'s index'))
     }
+  
   }
 }
