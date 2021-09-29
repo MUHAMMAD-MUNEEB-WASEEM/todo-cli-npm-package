@@ -28,22 +28,19 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`muneeb add [FILE]`](#muneeb-add-file)
+* [`muneeb add [TODO]`](#muneeb-add-todo)
 * [`muneeb hello [FILE]`](#muneeb-hello-file)
 * [`muneeb help [COMMAND]`](#muneeb-help-command)
+* [`muneeb list`](#muneeb-list)
+* [`muneeb remove [FILE]`](#muneeb-remove-file)
 
-## `muneeb add [FILE]`
+## `muneeb add [TODO]`
 
-describe the command here
+Add new todo
 
 ```
 USAGE
-  $ muneeb add [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  $ muneeb add [TODO]
 ```
 
 _See code: [src/commands/add.ts](https://github.com/MUHAMMAD-MUNEEB-WASEEM/muneeb/blob/v0.0.0/src/commands/add.ts)_
@@ -84,4 +81,31 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
+
+## `muneeb list`
+
+Print out all todos
+
+```
+USAGE
+  $ muneeb list
+```
+
+_See code: [src/commands/list.ts](https://github.com/MUHAMMAD-MUNEEB-WASEEM/muneeb/blob/v0.0.0/src/commands/list.ts)_
+
+## `muneeb remove [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ muneeb remove [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/remove.ts](https://github.com/MUHAMMAD-MUNEEB-WASEEM/muneeb/blob/v0.0.0/src/commands/remove.ts)_
 <!-- commandsstop -->
