@@ -119,3 +119,7 @@ USAGE
 
 _See code: [src/commands/remove.ts](https://github.com/MUHAMMAD-MUNEEB-WASEEM/muneeb/blob/v0.0.0/src/commands/remove.ts)_
 <!-- commandsstop -->
+
+## Publishing Global Package
+
+* npm publish --access public (from main muneeb folder)
