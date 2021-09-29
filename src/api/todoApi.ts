@@ -1,60 +1,74 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as os from 'os'
+import * as fs from 'fs';
+import * as path from 'path';
+import * as os from 'os';
 
-// const todoFile = path.join(os.homedir(), 'Desktop/asad-todo-cli', 'todos.json');
-const todoFile = path.join(__dirname, 'todos.json')
+const todoFile = path.join(__dirname, 'todos.json');
 
 interface Todo {
-  done: boolean;
-  todo: string;
+    done: boolean;
+    todo: string;
 }
 
 class TodoAPI {
-  private todos : Todo[] = []
 
-  constructor () {
-    this.todos = JSON.parse(fs.readFileSync(todoFile, { encoding: 'utf-8' }))
-  }
+    //variables (not necessary in typescript)
+    
+    //constructor
 
-  private saveTodos () {
-    // make folder for the first run
-    if (!fs.existsSync(path.dirname(todoFile))) {
-      fs.mkdirSync(path.dirname(todoFile))
+    constructor(private todos : Todo[] = []) {
+
+        this.todos = JSON.parse(fs.readFileSync(todoFile, { encoding: 'utf-8' }))
+
     }
-    const data = JSON.stringify(this.todos)
-    fs.writeFileSync(todoFile, data, { encoding: 'utf-8' })
-  }
 
-  add (todo : string, done? : boolean) {
-    done = done || false
-    const newTodo : Todo = { done, todo }
-    this.todos.push(newTodo)
-    this.saveTodos()
-  }
-  remove (index : number) {
-    this.todos.splice(index, 1)
-    this.saveTodos()
-  }
+    //methods
 
-  list () {
-    return this.todos
-  }
+    private saveTodos():void {
+        
+        //first create folder
+        
+        if (!fs.existsSync(path.dirname(todoFile))) {
+            fs.mkdirSync(path.dirname(todoFile))
+        }
+        
+        //Now save data in todos.json
 
-  get (index : number) : Todo {
-    return this.todos[index]
-  }
+        const data = JSON.stringify(this.todos);
+        fs.writeFileSync(todoFile, data, { encoding: 'utf-8' })
+    }
 
-  done (index : number) {
-    this.todos[index].done = true
-    this.saveTodos()
-  }
+    add (todo:string, done ? : boolean):void{
+        done = done || false
+        const newTodo : Todo = {done:done, todo: todo};
+        this.todos.push(newTodo);
+        this.saveTodos();
+    }
 
-  undone (index : number) {
-    this.todos[index].done = false
-    this.saveTodos()
-  }
+    remove (index:number):void{
+        this.todos.splice(index,1);
+        this.saveTodos();
+    }
+    
+    list ():Todo[]{
+        return this.todos;
+    }
+
+    get (index:number):Todo{
+        return this.todos[index];
+    }
+
+    done (index:number){
+        this.todos[index].done = true;
+        this.saveTodos();
+    }
+    
+    unDone (index:number){
+        this.todos[index].done = false;
+        this.saveTodos();
+    }
+
 }
 
-const api = new TodoAPI
+const api: TodoAPI = new TodoAPI();
+
 export default api

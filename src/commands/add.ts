@@ -1,4 +1,4 @@
-import {Command} from '@oclif/command'
+import {Command, flags} from '@oclif/command'
 import chalk = require('chalk');
 import todoApi from '../api/todoApi';
 
@@ -7,12 +7,22 @@ export default class Add extends Command {
 
   static args = [{name: 'todo'}]
 
+  static flags = {
+    done: flags.boolean({ char: 'd' })
+  }
+
   async run() {
-    const {args} = this.parse(Add);
+    const {args, flags} = this.parse(Add);
     const todo = args.todo
 
     if (todo) {
-      todoApi.add(todo);
+
+      if (flags.done){
+        todoApi.add(todo, true)
+      } else {
+        todoApi.add(todo)
+      }
+
       this.log(`${chalk.green('[Success]')} Added new todo: ${todo}`)
     } else {
       this.error(`${chalk.red('Enter new todo')}`)
